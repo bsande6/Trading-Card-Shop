@@ -1,10 +1,10 @@
-#  Dockerfile for Node Express Backend
+#  Dockerfile for Node Backend
 
-FROM node:10.16-alpine
+FROM node:14-alpine3.17
 
 # Create App Directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN mkdir -p /app
+WORKDIR /app
 
 # Install Dependencies
 COPY package*.json ./
