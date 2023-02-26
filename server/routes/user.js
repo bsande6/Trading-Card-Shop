@@ -3,25 +3,42 @@ const express = require('express');
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-    // First Validate The Request
     const { error } = validate(req.body);
+    
     if (error) {
         return res.status(400).send(error.details[0].message);
     }
 
     // Check if this user already exisits
-    let user = await User.findOne({ email: req.body.email });
+    let user = await User.findOne({ email: req.body.email});
     if (user) {
-        return res.status(400).send('That user already exisits!');
+        return res.status(400).send('That user already exists!');
     } else {
-        // Insert the new user if they do not exist yet
         user = new User({
-            name: req.body.name,
             email: req.body.email,
             password: req.body.password
         });
         await user.save();
         res.send(user);
+    }
+});
+
+router.post('/auth', async (req, res) => {
+    const { error } = validate(req.body);
+    
+    if (error) {
+        return res.status(400).send(error.details[0].message);
+    }
+
+    let user = await User.findOne({ email: req.body.email});
+    if (user) {
+        if (req.body['password'] == user['password']) {
+            console.log("h")
+            return res.status(200).send("Successfully authenticated")
+        }
+        res.status(400).send('That user does not exist')
+    } else {
+        return res.status(400).send('That user does not exist');
     }
 });
 
