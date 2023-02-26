@@ -64,7 +64,7 @@ const Login = (props) => {
       <Typography align="center" variant="h3" marginBottom="10px">
         Trading Card Shop
       </Typography>
-      <Box
+       <Box
         sx={{
           display: "flex",
           justifyContent: "center",
@@ -90,7 +90,7 @@ const Login = (props) => {
             </Button>
           </Link>
         </Stack>
-      </Box>
+      </Box> 
     </Stack>
   );
 };

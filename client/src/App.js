@@ -1,11 +1,12 @@
 import logo from './logo.svg';
+import './App.css';
+import { useState, useEffect } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
-import './App.css';
 
 import Login from "./components/start/login";
-import Home from "./components/home";
+
 
 function App() {
   const theme = createTheme({
@@ -16,13 +17,13 @@ function App() {
         secondary: "#000000",
       },
       primary: {
-        main: "#5A8BC6",
+        main: "#98AFC7",
       },
       secondary: {
-        main: "#f48f32",
+        main: "#f48fb1",
       },
       background: {
-        default: "#81858A",
+        default: "#404040",
         paper: "#8c8c8c",
       },
     },
@@ -34,16 +35,15 @@ function App() {
       fontWeightBold: 600,
     },
   });
-
   return (
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Routes>
-        <Route path="/" element={<Login/>} />
-        </Routes>
-      </ThemeProvider>
-    </BrowserRouter>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Routes>
+            <Route path="/" element={<Login/>} />
+          </Routes>
+        </ThemeProvider>
+      </BrowserRouter>
   );
 }
 
