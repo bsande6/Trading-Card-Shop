@@ -91,7 +91,7 @@ const Register = (props) => {
           <Button variant="contained" disableFocusRipple={true} sx={{ color: theme.palette.text.primary }} onClick={handleSubmit}>
             Register
           </Button>
-          <Link to="/login">
+          <Link to="/">
             <Button variant="contained">
               Have an account?
             </Button>

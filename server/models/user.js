@@ -9,7 +9,11 @@ const User = mongoose.model('User', new mongoose.Schema({
   password: {
     type: String,
     required: true,
-  }
+  },
+  cards: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Card"
+  }]
 }));
 
 function validateUser(user) {

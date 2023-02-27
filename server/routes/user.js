@@ -42,4 +42,9 @@ router.post('/auth', async (req, res) => {
     }
 });
 
+router.get('/user_cards', async (req, res) => {
+    let user = await User.findOne({ email: req.body.email}).populate("cards");
+    res.json(user)
+});
+
 module.exports = router;
