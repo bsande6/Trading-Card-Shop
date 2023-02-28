@@ -20,20 +20,20 @@ const Login = (props) => {
     password: "",
   });
 
-  // const config = {
-  //   headers: {
-  //     Authorization: `Key key=123456789`,
-  //     "Content-Type": "application/json",
-  //     "Cache-Control" : 'no-cache',
-  //     "Pragma" : 'no-cache',
-  //     "Expires" : '0'
-  //   },
-  // };
-
   const navigate = useNavigate()
 
   const authenticate = useCallback(() => {
-   return navigate('/home', {replace : false}), [navigate]
+    console.log(JSON.stringify(user));
+    axios
+      .post("/api/users/auth", user)
+      .then((response) => {
+        console.log(response.status)
+        if (response.status == 200) {
+          localStorage.setItem('user', JSON.stringify(user))
+          return navigate('/home', {replace : false}), [navigate]
+        }
+      })
+      .catch((err) => console.log(err));      
   })
 
   const handleChange = (event) => {
@@ -49,6 +49,7 @@ const Login = (props) => {
     axios
       .post("http://localhost:5000/api/auth", user)
       .then((response) => console.log(response.status))
+      .then(localStorage.setItem('user', JSON.stringify(user)))
       .catch((err) => console.log(err));
   };
   return (
