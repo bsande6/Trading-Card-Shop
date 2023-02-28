@@ -21,20 +21,21 @@ var upload = multer({ storage: storage });
 
 router.post('/', upload.single("myImage"), async (req, res) => {
     const { error } = validate(req.body);
-    console.log(req.body)
-    console.log(error)
     if (error) { 
         return res.status(400).send(error.details[0].message);
     }
     let user = await User.findOne({ email: req.body.email});
-    console.log("user", user)
+  
     let card = new Card({
         description: req.body.description,
         price: req.body.price,
         image: path.join(__dirname + '/../uploads/' + req.body.filename),
         owner: user
     });
+
+    user.cards.push(card._id)
     await card.save();
+    await user.save()
     res.send(card)
 });
 

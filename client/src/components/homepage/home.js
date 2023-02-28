@@ -5,16 +5,10 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useTheme } from '@emotion/react';
 import {
-    Box,
     Stack,
-    Button,
-    Input,
-    InputLabel,
     Typography,
-    Tab,
-    Tabs,
-    Select,
-    MenuItem,
+    ImageList,
+    ImageListItem
 } from "@mui/material";
 import MainAppBar from '../homepage/mainmenu';
 // import { Link } from 'react-router-dom';
@@ -28,40 +22,66 @@ function refreshPage(){
     window.location.reload(); 
 }
 
-function CardData(){
-    const [data, setData] = useState(
-        []
-    );
-   
-    useEffect(() => {
-        let userDetails = JSON.parse(localStorage.getItem('user'));
-        axios
-            .get("/api/users/cards", {
-                params: {
-                    email: userDetails['email'],
-                }
-            }).then((res)=>{
-                setData(res.data);
-                console.log("res", res.data)
-            }).catch(err=>console.log(err));
-    }, []);
-    // <div className = "col-3">
-    //                         <div className = "adjust">
-    //                             <div className="image">
-    //                                 <img width="300" height="300" src={image}></img>
-    //                             </div>
-    //                             <div className="name">{name}</div>
-    //                         </div>
-    //                     </div>
-    return data;
-    // return [allCards];}
-} 
+
 
 const Home = (props) => {
     const theme = useTheme();
+
+    const [items, setItems] = useState(
+        []
+    );
     
-    let cards = CardData()
-    console.log(cards)
+    function CardData(){
+        useEffect(() => {
+            let userDetails = JSON.parse(localStorage.getItem('user'));
+            axios
+                .get("/api/users/cards", {
+                    params: {
+                        email: userDetails['email'],
+                    }
+                }).then((res)=>{
+                    setItems(res.data["cards"]);
+                    console.log("res", res.data["cards"])
+                   
+                }).catch(err=>console.log(err));
+        }, []);
+        // <div className = "col-3">
+        //                         <div className = "adjust">
+        //                             <div className="image">
+        //                                 <img width="300" height="300" src={image}></img>
+        //                             </div>
+        //                             <div className="name">{name}</div>
+        //                         </div>
+        //                     </div>
+        // return [allCards];}
+    } 
+
+   
+    function MyList() {
+        console.log(items)
+        return (
+            <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+            {items.map((item) => (
+              <ImageListItem key={item.image}>
+                <figure>
+                    <img
+                    src={`${item.image}?w=164&h=164&fit=crop&auto=format`}
+                    srcSet={`${item.image}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                    alt={item.title}
+                    loading="lazy"
+                    />
+                    <figcaption>{"$" + item.price + " " + item.description}</figcaption>
+                </figure>
+              </ImageListItem>
+            ))}
+          </ImageList>
+       );
+    }
+    
+    CardData()
+  
+    //MyList(data)
+    
     // try{const allCards = cards.map( function (data) {
     //     const name = data.name;
 
@@ -77,6 +97,7 @@ const Home = (props) => {
                         {" "}
                         Your Cards
                     </Typography>
+                    <MyList/>
                 </Stack>
             </div>
         );
