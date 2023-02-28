@@ -10,7 +10,7 @@ router.post('/', async (req, res) => {
     }
 
     // Check if this user already exisits
-    let user = await User.findOne({ email: req.body.email});
+    let user = await User.findOne({email: req.body.email});
     if (user) {
         return res.status(400).send('That user already exists!');
     } else {
@@ -33,7 +33,6 @@ router.post('/auth', async (req, res) => {
     let user = await User.findOne({ email: req.body.email});
     if (user) {
         if (req.body['password'] == user['password']) {
-            console.log("h")
             return res.status(200).send("Successfully authenticated")
         }
         res.status(400).send('That user does not exist')
@@ -42,9 +41,14 @@ router.post('/auth', async (req, res) => {
     }
 });
 
-router.get('/user_cards', async (req, res) => {
-    let user = await User.findOne({ email: req.body.email}).populate("cards");
-    res.json(user)
+router.get('/cards', async (req, res) => {
+    console.log(req.query)
+    console.log("here", req.query)
+    let user = await User.find({ email: req.query.email})
+    console.log(user)
+    let cards = await User.find({ email: req.query.email}).populate("cards");
+    console.log(cards)
+    res.send(cards)
 });
 
 module.exports = router;

@@ -1,10 +1,18 @@
-import { color } from "@mui/system";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const UploadAndDisplayImage = () => {
+const UploadAndDisplayImage = (props) => {
 
     const [selectedImage, setSelectedImage] = useState(null);
-  
+
+    useEffect(() => {
+      if (props.onChange) {
+        props.onChange({
+          selectedImage
+        });
+        console.log(selectedImage)
+      }
+    }, [selectedImage]);
+
     return (
       <div>
         <p style={{color: 'black'}}> Select an Image </p>
@@ -36,3 +44,4 @@ const UploadAndDisplayImage = () => {
   };
   
   export default UploadAndDisplayImage;
+ 

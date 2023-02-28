@@ -2,9 +2,10 @@ const Joi = require('joi');
 const mongoose = require('mongoose');
 
 const Card = mongoose.model('Card', new mongoose.Schema({
-  image: {
-    type: Buffer,
-    required: true,
+  image:
+  {
+    type: String,
+    required: true
   },
   description: {
     type: String,
@@ -21,10 +22,13 @@ const Card = mongoose.model('Card', new mongoose.Schema({
 }));
 
 function validateCard(card) {
+  // TODO validate image buffer
   const schema = Joi.object({
-      image: Joi.buffer(),
+      file: Joi.any(),
+      filename: Joi.string().min(1).max(255).required(),
       description: Joi.string().min(1).max(255).required(),
-      price: Joi.number().required()
+      price: Joi.number().required(),
+      email: Joi.string().required()
   });
   return schema.validate(card);
 }
