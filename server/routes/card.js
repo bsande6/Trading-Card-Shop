@@ -6,18 +6,17 @@ var fs = require('fs');
 var multer = require('multer');
 var path = require('path');
 const { User } = require('../models/user');
-const { faUserAstronaut } = require('@fortawesome/free-solid-svg-icons');
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/')
+    cb(null, './server/uploads/')
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + path.extname(file.originalname))
   }
 })
 
-var upload = multer({ storage: storage });
+var upload = multer({storage: storage});
 
 router.post('/', upload.single("myImage"), async (req, res) => {
     const { error } = validate(req.body);

@@ -43,7 +43,6 @@ router.post('/auth', async (req, res) => {
 
 router.get('/cards', async (req, res) => {
     console.log(req.query)
-    console.log("here", req.query)
     let cards = await User.findOne({ email: req.query.email}).populate("cards");
     res.json(cards)
 });

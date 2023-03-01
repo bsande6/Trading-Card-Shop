@@ -27,9 +27,8 @@ app.use(express.json());
 app.use('/api/users', users);
 app.use('/api/cards', cards)
 
-app.get('/message', (req, res) => {
-  res.json({ message: "Hello from server!" });
-});
+app.set("view engine", 'ejs')
+app.use(express.static(`${__dirname}/uploads`))
 
 app.listen(5000, () => {
   console.log(`Server is running on port 5000.`);
