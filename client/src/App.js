@@ -6,6 +6,9 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 
 import Login from "./components/start/login";
+import Register from "./components/start/register.js";
+import Home from "./components/homepage/home.js";
+import NewCard from "./components/cards/newcard.js";
 
 
 function App() {
@@ -41,6 +44,9 @@ function App() {
           <CssBaseline />
           <Routes>
             <Route path="/" element={<Login/>} />
+            <Route path="/register" element={<Register/>} />
+            <Route path="/home" element={<Home/>} />
+            <Route path="/newcard" element={<NewCard/>} />
           </Routes>
         </ThemeProvider>
       </BrowserRouter>

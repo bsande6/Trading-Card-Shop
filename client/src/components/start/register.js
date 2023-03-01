@@ -15,13 +15,13 @@ import { useTheme } from "@mui/material";
 import axios from "axios";
 import PasswordChecklist from "react-password-checklist";
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Register = (props) => {
 
   const theme = useTheme()
   const [user, setUser] = useState({
     email: "",
-    hashed: "",
     password: "",
   });
   const [password, setPassword] = useState("");
@@ -36,6 +36,8 @@ const Register = (props) => {
       "Expires": '0'
     }
   }
+
+  const navigate = useNavigate()
 
   // useEffect(() => {
   //   axios
@@ -54,13 +56,18 @@ const Register = (props) => {
     });
   };
 
-   const handleSubmit = (event) => {
-     console.log(JSON.stringify(user));
-    axios
-      .post("/api/users", user)
-      .then((response) => console.log(response.status))
-      .catch((err) => console.log(err));
-   };
+  const handleSubmit = (event) => {
+    setUser({
+      ...user,
+      "password": password
+    })
+    console.log(user)
+    let res = axios.post("/api/users", user)
+
+    if (res.status == 200) {
+      return navigate('/home', {replace : false}), [navigate]
+    }
+  };
 
   return (
     <div>
@@ -91,7 +98,7 @@ const Register = (props) => {
           <Button variant="contained" disableFocusRipple={true} sx={{ color: theme.palette.text.primary }} onClick={handleSubmit}>
             Register
           </Button>
-          <Link to="/login">
+          <Link to="/">
             <Button variant="contained">
               Have an account?
             </Button>
