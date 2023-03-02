@@ -34,7 +34,6 @@ const Home = (props) => {
                     }
                 }).then((res)=>{
                     setItems(res.data["cards"]);
-                    console.log("res", res.data["cards"])
                    
                 }).catch(err=>console.log(err));
         }, []);

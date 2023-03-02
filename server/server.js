@@ -8,6 +8,7 @@ const bodyParser  = require('body-parser');
 
 const users = require('./routes/user');
 const cards = require('./routes/card');
+const cart = require('./routes/cart');
 
 require("dotenv").config({ path: "./config.env" });
 uri = process.env.ATLAS_URI
@@ -25,7 +26,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/users', users);
-app.use('/api/cards', cards)
+app.use('/api/cards', cards);
+app.use('/api/cart', cart);
 
 app.set("view engine", 'ejs')
 app.use(express.static(`${__dirname}/uploads`))

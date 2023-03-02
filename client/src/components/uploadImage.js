@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 
 const UploadAndDisplayImage = (props) => {
 
-    const [selectedImage, setSelectedImage] = useState(null);
+    let [selectedImage, setSelectedImage] = useState("");
+   
 
     useEffect(() => {
       if (props.onChange) {
         props.onChange({
           selectedImage
         });
-        console.log(selectedImage)
       }
     }, [selectedImage]);
 
@@ -35,10 +35,10 @@ const UploadAndDisplayImage = (props) => {
           type="file"
           name="myImage"
           onChange={(event) => {
-            console.log(event.target.files[0]);
-            setSelectedImage(event.target.files[0]);
+            setSelectedImage(event.target.files[0]) 
           }}
         />
+        
       </div>
     );
   };

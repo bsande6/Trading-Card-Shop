@@ -9,6 +9,8 @@ import Login from "./components/start/login";
 import Register from "./components/start/register.js";
 import Home from "./components/homepage/home.js";
 import NewCard from "./components/cards/newcard.js";
+import Listings from "./components/cards/cardlistings.js";
+import Cart from "./components/cards/cart.js"
 
 
 function App() {
@@ -47,6 +49,8 @@ function App() {
             <Route path="/register" element={<Register/>} />
             <Route path="/home" element={<Home/>} />
             <Route path="/newcard" element={<NewCard/>} />
+            <Route path="/listings" element={<Listings/>} />
+            <Route path="/cart" element={<Cart/>} />
           </Routes>
         </ThemeProvider>
       </BrowserRouter>

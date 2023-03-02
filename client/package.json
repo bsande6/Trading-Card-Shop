@@ -16,6 +16,7 @@
     "react-router": "^6.x.x",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
+    "react-text": "^3.2.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

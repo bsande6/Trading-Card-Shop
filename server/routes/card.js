@@ -46,7 +46,4 @@ router.get('/all_cards', async (req, res) => {
   res.json(cards)
 });
 
-
-
-
 module.exports = router;

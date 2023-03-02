@@ -3,22 +3,15 @@ import axios from "axios";
 import { useTheme } from '@emotion/react';
 import {
     Stack,
+    Button,
     Typography,
     ImageList,
-    ImageListItem
+    ImageListItem,
+    Box
 } from "@mui/material";
 import MainAppBar from '../homepage/mainmenu';
 
-
-// function refreshPage(){ 
-//     window.location.reload(); 
-// }
-
-
-
-const Home = (props) => {
-    //const theme = useTheme();
-
+const Listings = (props) => {
     const [items, setItems] = useState(
         []
     );
@@ -35,9 +28,25 @@ const Home = (props) => {
     } 
 
     CardData()
+
+    const handleSubmit = (image) => {
+        let userDetails = JSON.parse(localStorage.getItem('user'));
+        console.log(image)
+        let body = {
+                email: userDetails["email"],
+                card: image
+               }
+        axios
+        .post("/api/cart", body)
+        .then((response) => {
+          console.log(response)
+          if (response.status == 200) {
+          }
+        })
+        .catch((err) => alert(err.response["data"]));    
+      };
     
     function MyList() {
-        console.log(items)
         return (
             <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
             {items.map((item) => (
@@ -51,12 +60,14 @@ const Home = (props) => {
                     />
                     <figcaption>{"$" + item.price + " " + item.description}</figcaption>
                 </figure>
+                <Button onClick={(item) => handleSubmit(item)}> 
+                    Add to Cart
+                </Button>
               </ImageListItem>
             ))}
           </ImageList>
        );
     }
-    
     
         return (
             <div style={{ height: 400, width: '100%' }}>
@@ -71,4 +82,4 @@ const Home = (props) => {
             </div>
         );
     };
-export default Home;
+export default Listings;
