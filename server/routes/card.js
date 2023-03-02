@@ -40,6 +40,11 @@ router.post('/', upload.single("myImage"), async (req, res) => {
     res.send(card)
 });
 
+router.get('/all_cards', async (req, res) => {
+  let cards = await Card.find()
+  console.log(cards)
+  res.json(cards)
+});
 
 
 

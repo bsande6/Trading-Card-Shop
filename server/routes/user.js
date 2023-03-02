@@ -51,4 +51,10 @@ router.get('/cards', async (req, res) => {
     res.json(cards)
 });
 
+router.get('/all_cards', async (req, res) => {
+    let cards = await User.find().populate("cards");
+    console.log(cards)
+    res.json(cards)
+});
+
 module.exports = router;

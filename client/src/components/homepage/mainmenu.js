@@ -20,10 +20,16 @@ const MainAppBar = () => {
                     <Link to="/newcard">
                         Create Card
                     </Link>
-            
-                    <Link to="/" onClick={() => localStorage.clear()}>
-                        Logout
+                    <Link to="/listings">
+                        Card Listings
                     </Link>
+                    <Link to="/cart">
+                        Cart
+                    </Link>
+                    <Link to="/" onClick={() => localStorage.clear()}>
+                      Logout
+                    </Link>
+                    
                 </Stack>
             </Toolbar>
         </AppBar>
