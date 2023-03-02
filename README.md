@@ -1,5 +1,5 @@
 # bsande6-Trading-Card-Shop
 
-Project which creates a trading card shop where users can create their own cards.
+Project of a trading card shop where users can create their own trading cards.
 
 This project utilizes the MERN stack and docker.
