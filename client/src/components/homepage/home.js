@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Checkbox from '@mui/material/Checkbox';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import { useTheme } from '@emotion/react';
 import {
     Stack,
@@ -11,21 +8,16 @@ import {
     ImageListItem
 } from "@mui/material";
 import MainAppBar from '../homepage/mainmenu';
-// import { Link } from 'react-router-dom';
-// import FriendCalendar from '../status/viewcalendar';
-// import GiveActivity from './activity';
-// import ViewCal from '../status/viewcalendar';
 
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-function refreshPage(){ 
-    window.location.reload(); 
-}
+// function refreshPage(){ 
+//     window.location.reload(); 
+// }
 
 
 
 const Home = (props) => {
-    const theme = useTheme();
+    //const theme = useTheme();
 
     const [items, setItems] = useState(
         []
