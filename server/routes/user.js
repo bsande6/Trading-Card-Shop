@@ -51,4 +51,10 @@ router.get('/cards', async (req, res) => {
     res.json(cards)
 });
 
+// router.get('/cart', async (req, res) => {
+//     let cart = await User.findOne({ email: req.query.email}).populate("cards");
+//     console.log(cards)
+//     res.json(cards)
+// });
+
 module.exports = router;

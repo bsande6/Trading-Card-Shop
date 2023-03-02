@@ -13,6 +13,10 @@ const User = mongoose.model('User', new mongoose.Schema({
   cards: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Card"
+  }],
+  cart: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Cart"
   }]
 }));
 

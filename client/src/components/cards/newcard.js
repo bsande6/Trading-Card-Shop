@@ -11,6 +11,7 @@ import { useTheme } from "@mui/material";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import UploadAndDisplayImage from "../uploadImage";
+import MainAppBar from '../homepage/mainmenu';
 
 const Register = (props) => {
   const theme = useTheme()
@@ -28,6 +29,7 @@ const Register = (props) => {
   const formData = new FormData();
 
   const handleSubmit = (event) => {
+    console.log(image)
     let userDetails = JSON.parse(localStorage.getItem('user'));
     formData.append("price", price)
     formData.append("description", description)
@@ -49,6 +51,7 @@ const Register = (props) => {
 
   return (
     <div>
+      <MainAppBar/>
       <Typography align="center" variant="h3">
         Create Card
       </Typography>

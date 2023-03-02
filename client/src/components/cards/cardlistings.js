@@ -3,54 +3,50 @@ import axios from "axios";
 import { useTheme } from '@emotion/react';
 import {
     Stack,
+    Button,
     Typography,
     ImageList,
-    ImageListItem
+    ImageListItem,
+    Box
 } from "@mui/material";
 import MainAppBar from '../homepage/mainmenu';
 
-
-// function refreshPage(){ 
-//     window.location.reload(); 
-// }
-
-
-
-const Home = (props) => {
-    //const theme = useTheme();
-
+const Listings = (props) => {
     const [items, setItems] = useState(
         []
     );
     
     function CardData(){
         useEffect(() => {
-            console.log(localStorage.getItem('user'))
-            let userDetails = JSON.parse(localStorage.getItem('user'));
             axios
-                .get("/api/users/cards", {
-                    params: {
-                        email: userDetails['email'],
-                    }
+                .get("/api/cards/all_cards", {
                 }).then((res)=>{
-                    setItems(res.data["cards"]);
-                   
+                    setItems(res.data);
+                    console.log("res", res.data)    
                 }).catch(err=>console.log(err));
         }, []);
-        // <div className = "col-3">
-        //                         <div className = "adjust">
-        //                             <div className="image">
-        //                                 <img width="300" height="300" src={image}></img>
-        //                             </div>
-        //                             <div className="name">{name}</div>
-        //                         </div>
-        //                     </div>
-        // return [allCards];}
     } 
 
-   
+    CardData()
+
+    const handleSubmit = (image) => {
+        let userDetails = JSON.parse(localStorage.getItem('user'));
+        console.log(image)
+        let body = {
+                email: userDetails["email"],
+                card: image
+               }
+        axios
+        .post("/api/cart", body)
+        .then((response) => {
+          console.log(response)
+          if (response.status == 200) {
+          }
+        })
+        .catch((err) => alert(err.response["data"]));    
+      };
+    
     function MyList() {
-        console.log(items)
         return (
             <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
             {items.map((item) => (
@@ -64,37 +60,26 @@ const Home = (props) => {
                     />
                     <figcaption>{"$" + item.price + " " + item.description}</figcaption>
                 </figure>
+                <Button onClick={(item) => handleSubmit(item)}> 
+                    Add to Cart
+                </Button>
               </ImageListItem>
             ))}
           </ImageList>
        );
     }
     
-    CardData()
-  
-    //MyList(data)
-    
-    // try{const allCards = cards.map( function (data) {
-    //     const name = data.name;
-
-    //     const blob = new Blob([Int8Array.from(data.img.data.data)], {type: data.img.contentType });
-
-    //     const image = window.URL.createObjectURL(blob);
-
         return (
             <div style={{ height: 400, width: '100%' }}>
                 <MainAppBar/>
                 <Stack direction="column" alignItems="center" sx={{ padding: 2 }}>
                     <Typography variant="h5" sx={{ fontWeight: 500 }}>
                         {" "}
-                        Your Cards
+                        Card Listings
                     </Typography>
                     <MyList/>
                 </Stack>
             </div>
         );
-    // })
-    // return [allCards];}
-    // catch(e){ return null;}
     };
-export default Home;
+export default Listings;

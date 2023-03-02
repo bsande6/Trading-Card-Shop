@@ -39,15 +39,6 @@ const Register = (props) => {
 
   const navigate = useNavigate()
 
-  // useEffect(() => {
-  //   axios
-  //     .get("/api/", config)
-  //     .then((response) => {
-  //       console.log(response.data)
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
-
   const handleChange = (event) => {
     const value = event.target.value;
     setUser({
