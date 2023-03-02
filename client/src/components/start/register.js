@@ -57,16 +57,20 @@ const Register = (props) => {
   };
 
   const handleSubmit = (event) => {
+    console.log(password)
     setUser({
       ...user,
       "password": password
     })
-    console.log(user)
-    let res = axios.post("/api/users", user)
-
-    if (res.status == 200) {
-      return navigate('/home', {replace : false}), [navigate]
-    }
+    axios
+    .post("/api/users", user)
+    .then((response) => {
+      console.log(response)
+      if (response.status == 200) {
+        return navigate('/', {replace : false}), [navigate]
+      }
+    })
+    .catch((err) => alert(err.response["data"]));    
   };
 
   return (

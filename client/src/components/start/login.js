@@ -23,17 +23,16 @@ const Login = (props) => {
   const navigate = useNavigate()
 
   const authenticate = useCallback(() => {
-    console.log(JSON.stringify(user));
+    console.log(user)
     axios
       .post("/api/users/auth", user)
       .then((response) => {
-        console.log(response.status)
         if (response.status == 200) {
           localStorage.setItem('user', JSON.stringify(user))
           return navigate('/home', {replace : false}), [navigate]
         }
       })
-      .catch((err) => console.log(err));      
+      .catch((err) => alert(err.response["data"]));    
   })
 
   const handleChange = (event) => {
