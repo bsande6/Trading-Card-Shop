@@ -1,9 +1,6 @@
-import logo from './logo.svg';
-import './App.css';
-import { useState, useEffect } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Login from "./components/start/login";
 import Register from "./components/start/register.js";
