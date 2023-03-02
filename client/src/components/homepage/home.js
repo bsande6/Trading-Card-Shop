@@ -33,6 +33,7 @@ const Home = (props) => {
     
     function CardData(){
         useEffect(() => {
+            console.log(localStorage.getItem('user'))
             let userDetails = JSON.parse(localStorage.getItem('user'));
             axios
                 .get("/api/users/cards", {

@@ -3,7 +3,7 @@ import {
     AppBar,
     Toolbar,
     CssBaseline,
-    Typography,
+    Button,
     Stack,
 } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -21,7 +21,7 @@ const MainAppBar = () => {
                         Create Card
                     </Link>
             
-                    <Link to="/">
+                    <Link to="/" onClick={() => localStorage.clear()}>
                         Logout
                     </Link>
                 </Stack>
