@@ -24,7 +24,9 @@ router.post('/', upload.single("myImage"), async (req, res) => {
         return res.status(400).send(error.details[0].message);
     }
     let user = await User.findOne({ email: req.body.email});
-  
+    // fs.writeFile(path.join(__dirname + '/../uploads/' + req.body.filename), , function (err) {
+    //   if (err) throw err;               console.log('Results Received');
+    // }); 
     let card = new Card({
         description: req.body.description,
         price: req.body.price,
