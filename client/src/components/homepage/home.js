@@ -37,15 +37,6 @@ const Home = (props) => {
                    
                 }).catch(err=>console.log(err));
         }, []);
-        // <div className = "col-3">
-        //                         <div className = "adjust">
-        //                             <div className="image">
-        //                                 <img width="300" height="300" src={image}></img>
-        //                             </div>
-        //                             <div className="name">{name}</div>
-        //                         </div>
-        //                     </div>
-        // return [allCards];}
     } 
 
    
@@ -71,15 +62,6 @@ const Home = (props) => {
     }
     
     CardData()
-  
-    //MyList(data)
-    
-    // try{const allCards = cards.map( function (data) {
-    //     const name = data.name;
-
-    //     const blob = new Blob([Int8Array.from(data.img.data.data)], {type: data.img.contentType });
-
-    //     const image = window.URL.createObjectURL(blob);
 
         return (
             <div style={{ height: 400, width: '100%' }}>
@@ -93,8 +75,5 @@ const Home = (props) => {
                 </Stack>
             </div>
         );
-    // })
-    // return [allCards];}
-    // catch(e){ return null;}
     };
 export default Home;
